@@ -62,16 +62,16 @@ export class Road extends Building {
       this.rotation = 90;}
     // Dead end
     // } else if (top && !bottom && !left && !right) { // top
-    //   this.style = 'staright';
+    //   this.style = 'end';
     //   this.rotation = 180;
     // } else if (!top && bottom && !left && !right) { // bottom
-    //   this.style = 'staright';
+    //   this.style = 'end';
     //   this.rotation = 0;
     // } else if (!top && !bottom && left && !right) { // left
-    //   this.style = 'staright';
+    //   this.style = 'end';
     //   this.rotation = 270;
     // } else if (!top && !bottom && !left && right) { // right
-    //   this.style = 'straight';
+    //   this.style = 'end';
     //   this.rotation = 90;
     // }
 

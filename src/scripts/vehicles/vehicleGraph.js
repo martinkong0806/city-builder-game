@@ -11,7 +11,7 @@ export class VehicleGraph extends THREE.Group {
     super();
 
     this.size = size;
-    
+
     /**
      * @type {AssetManager}
      */
@@ -24,7 +24,7 @@ export class VehicleGraph extends THREE.Group {
 
     this.vehicles = new THREE.Group();
     this.add(this.vehicles);
-  
+
     /**
      * @type {VehicleGraphHelper}
      */
@@ -70,10 +70,10 @@ export class VehicleGraph extends THREE.Group {
     rightTile?.getWorldLeftSide()?.out?.disconnectAll();
     topTile?.getWorldBottomSide()?.out?.disconnectAll();
     bottomTile?.getWorldTopSide()?.out?.disconnectAll();
-    
+
     if (road) {
       const tile = VehicleGraphTile.create(x, y, road.rotation, road.style);
-      
+
       // Connect tile to adjacent tiles
       if (leftTile) {
         tile.getWorldLeftSide().out?.connect(leftTile.getWorldRightSide().in);
@@ -115,12 +115,21 @@ export class VehicleGraph extends THREE.Group {
     }
   }
 
+
+
   spawnVehicle() {
     if (this.vehicles.children.length < config.vehicle.maxVehicleCount) {
       const startingTile = this.getStartingTile();
 
+
       if (startingTile != null) {
-        const origin = startingTile.getRandomNode();
+        let origin = startingTile.getRandomNode();
+        for(let node in startingTile.children){
+          if(node.next == 0){
+            origin = node;
+          }
+        }
+        
         const destination = origin?.getRandomNextNode();
 
         if (origin && destination) {
@@ -145,7 +154,17 @@ export class VehicleGraph extends THREE.Group {
     for (let x = 0; x < this.size; x++) {
       for (let y = 0; y < this.size; y++) {
         let tile = this.getTile(x, y);
-        if (tile) tiles.push(tile);
+        if (tile) {
+          let isDeadend = false;
+          for (let i = 0; i < tile.children.length; i++) {
+            if (tile.children[i].next.length == 0) {
+              isDeadend = true
+            }
+          }
+          if (isDeadend) {
+            tiles.push(tile);
+          }
+        }
       }
     }
 

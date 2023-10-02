@@ -112,8 +112,8 @@ export default {
   },
   "road-end": {
     "type": "road",
-    "filename": "tile-road-end.glb",
-    "scale": 100,
+    "filename": "road_straight.gltf",
+    "scale": 15,
     "castShadow": false
   },
   "road-corner": {

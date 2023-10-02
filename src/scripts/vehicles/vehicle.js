@@ -58,10 +58,10 @@ export class Vehicle extends THREE.Group {
       return;
     }
 
-    if (this.getAge() > config.vehicle.maxLifetime) {
-      this.dispose();
-      return;
-    }
+    // if (this.getAge() > config.vehicle.maxLifetime) {
+    //   this.dispose();
+    //   return;
+    // }
 
     const cycleTime = this.getCycleTime();
     if (cycleTime === 1) {

@@ -166,9 +166,6 @@ export class AssetManager {
         if (glb.scene.children[0].children.length != 1) {
           mesh = glb.scene.children[0];
           isGltf = true;
-          console.log(mesh);
-
-
         }
 
         if (isGltf) {
