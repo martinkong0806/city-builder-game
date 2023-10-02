@@ -14,7 +14,8 @@ export class AssetManager {
   textures = {
     'base': this.loadTexture(`${baseUrl}textures/base.png`),
     'specular': this.loadTexture(`${baseUrl}textures/specular.png`),
-    'grid': this.loadTexture(`${baseUrl}textures/grid.png`)
+    'grid': this.loadTexture(`${baseUrl}textures/grid.png`),
+    'citybits': this.loadTexture(`${baseUrl}textures/citybits_texture.png`)
   };
 
   meshes = {};
@@ -76,7 +77,7 @@ export class AssetManager {
     if (zone.developed) {
       // TODO  modelName = 'under-construction';
     }
-     
+
     let mesh = this.cloneMesh(modelName);
     mesh.userData = tile;
     mesh.rotation.set(0, zone.rotation * DEG2RAD, 0);
@@ -86,7 +87,7 @@ export class AssetManager {
     if (zone.abandoned) {
       mesh.material.color = new THREE.Color(0x707070);
     }
-    
+
     return mesh;
   }
 
@@ -113,6 +114,7 @@ export class AssetManager {
       .filter(x => x[1].type === 'vehicle')
       .map(x => x[0]);
 
+
     const i = Math.floor(types.length * Math.random());
     return this.cloneMesh(types[i], true);
   }
@@ -131,7 +133,7 @@ export class AssetManager {
     // mesh independently (e.g. highlight on mouse over,
     // abandoned buildings, etc.))
     mesh.traverse((obj) => {
-      if(obj.material) {
+      if (obj.material) {
         obj.material = obj.material.clone();
         obj.material.transparent = transparent;
       }
@@ -156,20 +158,41 @@ export class AssetManager {
    * Load the 3D models
    * @param {string} url The URL of the model to load
    */
-  loadModel(name, {filename, scale = 1, rotation = 0, receiveShadow = true, castShadow = true}) {
+  loadModel(name, { filename, scale = 1, rotation = 0, receiveShadow = true, castShadow = true }) {
     this.modelLoader.load(`${baseUrl}models/${filename}`,
       (glb) => {
+        let isGltf = false;
         let mesh = glb.scene.children[0].children[0];
+        if (glb.scene.children[0].children.length != 1) {
+          mesh = glb.scene.children[0];
+          isGltf = true;
+          console.log(mesh);
 
-        mesh.traverse((node) => {
-          node.material = new THREE.MeshLambertMaterial({
-            map: this.textures.base,
-            specularMap: this.textures.specular
-          })
-        });
+
+        }
+
+        if (isGltf) {
+          mesh.traverse((node) => {
+            node.material = new THREE.MeshLambertMaterial({
+              map: this.textures.citybits,
+            })
+          });
+
+        } else {
+          mesh.traverse((node) => {
+            node.material = new THREE.MeshLambertMaterial({
+              map: this.textures.base,
+              specularMap: this.textures.specular
+            })
+          });
+
+        }
+
+
 
         mesh.position.set(0, 0, 0);
         mesh.rotation.set(0, THREE.MathUtils.degToRad(rotation), 0);
+
         mesh.scale.set(scale / 30, scale / 30, scale / 30);
         mesh.receiveShadow = receiveShadow;
         mesh.castShadow = castShadow;

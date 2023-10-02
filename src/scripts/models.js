@@ -106,8 +106,8 @@ export default {
   },
   "road-straight": {
     "type": "road",
-    "filename": "tile-road-straight.glb",
-    "scale": 100,
+    "filename": "road_straight.gltf",
+    "scale": 15,
     "castShadow": false
   },
   "road-end": {
@@ -118,20 +118,20 @@ export default {
   },
   "road-corner": {
     "type": "road",
-    "filename": "tile-road-curve.glb",
-    "scale": 100,
+    "filename": "road_corner_curved.gltf",
+    "scale": 15,
     "castShadow": false
   },
   "road-three-way": {
     "type": "road",
-    "filename": "tile-road-intersection-t.glb",
-    "scale": 100,
+    "filename": "road_tsplit.gltf",
+    "scale": 15,
     "castShadow": false
   },
   "road-four-way": {
     "type": "road",
-    "filename": "tile-road-intersection.glb",
-    "scale": 100,
+    "filename": "road_junction.gltf",
+    "scale": 15,
     "castShadow": false
   },
   "grass": {
@@ -142,52 +142,67 @@ export default {
   },
   "car-taxi": {
     "type": "vehicle",
-    "filename": "car-taxi.glb",
-    "rotation": 90
+    "filename": "car_taxi.gltf",
+    "rotation": 90,
+    "scale": 15,
   },
   "car-police": {
     "type": "vehicle",
-    "filename": "car-police.glb",
-    "rotation": 90
+    "filename": "car_police.gltf",
+    "rotation": 90,
+    "scale": 15,
   },
-  "car-passenger": {
+  "car-sedan": {
     "type": "vehicle",
-    "filename": "car-passenger.glb",
-    "rotation": 90
+    "filename": "car_sedan.gltf",
+    "rotation": 90,
+    "scale": 15,
   },
-  "car-veteran": {
+  "car-hatchback": {
     "type": "vehicle",
-    "filename": "car-veteran.glb",
-    "rotation": 90
+    "filename": "car_hatchback.gltf",
+    "rotation": 90,
+    "scale": 15,
   },
-  "truck": {
+  "car-stationwagon": {
     "type": "vehicle",
-    "filename": "truck.glb",
-    "rotation": 90
+    "filename": "car_stationwagon.gltf",
+    "rotation": 90,
+    "scale": 15,
   },
-  "car-hippie-van": {
-    "type": "vehicle",
-    "filename": "car-hippie-van.glb",
-    "rotation": 90
-  },
-  "car-tow-truck": {
-    "type": "vehicle",
-    "filename": "car-tow-truck.glb",
-    "rotation": 90
-  },
-  "car-ambulance-pickup": {
-    "type": "vehicle",
-    "filename": "car-ambulance-pickup.glb",
-    "rotation": 90
-  },
-  "car-passenger-race": {
-    "type": "vehicle",
-    "filename": "car-passenger-race.glb",
-    "rotation": 90
-  },
-  "car-baywatch": {
-    "type": "vehicle",
-    "filename": "car-baywatch.glb",
-    "rotation": 90
-  }
+  // "car-veteran": {
+  //   "type": "vehicle",
+  //   "filename": "car-veteran.glb",
+  //   "rotation": 90
+  // },
+  // "truck": {
+  //   "type": "vehicle",
+  //   "filename": "truck.glb",
+  //   "rotation": 90
+  // },
+  // "car-hippie-van": {
+  //   "type": "vehicle",
+  //   "filename": "car-hippie-van.glb",
+  //   "rotation": 90
+  // },
+  // "car-tow-truck": {
+  //   "type": "vehicle",
+  //   "filename": "car-tow-truck.glb",
+  //   "rotation": 90
+  // },
+  // "car-ambulance-pickup": {
+  //   "type": "vehicle",
+  //   "filename": "car-ambulance-pickup.glb",
+  //   "rotation": 90
+  // },
+  // "car-passenger-race": {
+  //   "type": "vehicle",
+  //   "filename": "car-passenger-race.glb",
+  //   "rotation": 90
+  // },
+  // "car-baywatch": {
+  //   "type": "vehicle",
+  //   "filename": "car-baywatch.glb",
+  //   "rotation": 90
+  // }
 }

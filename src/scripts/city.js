@@ -19,6 +19,11 @@ export class City {
       }
       this.tiles.push(column);
     }  
+
+    this.placeBuilding(3,3,'road')
+    this.placeBuilding(3,4,'road')
+    this.placeBuilding(4,4,'road')
+    this.placeBuilding(3,5,'road')
   }
  
   /** Returns the title at the coordinates. If the coordinates
@@ -182,3 +187,4 @@ export class City {
     return neighbors;
   }
 }
+

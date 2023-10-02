@@ -30,16 +30,16 @@ export class Road extends Building {
     // T intersection
     } else if (!top && bottom && left && right) { // bottom-left-right
       this.style = 'three-way';
-      this.rotation = 0;
+      this.rotation = 270;
     } else if (top && !bottom && left && right) { // top-left-right
       this.style = 'three-way';
-      this.rotation = 180;
+      this.rotation = 90;
     } else if (top && bottom && !left && right) { // top-bottom-right
       this.style = 'three-way';
-      this.rotation = 90;
+      this.rotation = 0;
     } else if (top && bottom && left && !right) { // top-bottom-left
       this.style = 'three-way';
-      this.rotation = 270;
+      this.rotation = 180;
     // Corner
     } else if (top && !bottom && left && !right) { // top-left
       this.style = 'corner';
@@ -57,23 +57,23 @@ export class Road extends Building {
     } else if (top && bottom && !left && !right) { // top-bottom
       this.style = 'straight';
       this.rotation = 0;
-    } else if (!top && !bottom && left && right) { // left-right
+    } else if (!top && !bottom && (left || right)) { // left-right
       this.style = 'straight';
-      this.rotation = 90;
+      this.rotation = 90;}
     // Dead end
-    } else if (top && !bottom && !left && !right) { // top
-      this.style = 'end';
-      this.rotation = 180;
-    } else if (!top && bottom && !left && !right) { // bottom
-      this.style = 'end';
-      this.rotation = 0;
-    } else if (!top && !bottom && left && !right) { // left
-      this.style = 'end';
-      this.rotation = 270;
-    } else if (!top && !bottom && !left && right) { // right
-      this.style = 'end';
-      this.rotation = 90;
-    }
+    // } else if (top && !bottom && !left && !right) { // top
+    //   this.style = 'staright';
+    //   this.rotation = 180;
+    // } else if (!top && bottom && !left && !right) { // bottom
+    //   this.style = 'staright';
+    //   this.rotation = 0;
+    // } else if (!top && !bottom && left && !right) { // left
+    //   this.style = 'staright';
+    //   this.rotation = 270;
+    // } else if (!top && !bottom && !left && right) { // right
+    //   this.style = 'straight';
+    //   this.rotation = 90;
+    // }
 
     this.isMeshOutOfDate = true;
   }

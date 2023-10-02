@@ -14,7 +14,7 @@ const DISCONNECTED_MATERIAL = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 export class VehicleGraphHelper extends THREE.Group {
   constructor() {
     super();
-    this.visible = false;
+    this.visible = true;
   }
 
   /**

@@ -42,6 +42,7 @@ export class SceneManager {
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.setPixelRatio( window.devicePixelRatio );
 
     // Add the renderer to the DOM
     this.gameWindow.appendChild(this.renderer.domElement);

@@ -1,14 +1,14 @@
 import * as THREE from 'three';
 import { VehicleGraphNode } from './vehicleGraphNode.js';
 
-const roadOffset = 0.05;
-const tileOffset = 0.25;
+const roadOffset = 0.15;
+const tileOffset = 0.5;
 
 export class VehicleGraphTile extends THREE.Group {
   constructor(x, y, rotation) {
     super();
 
-    this.position.set(x, 0, y);
+    this.position.set(x, 0.06, y);
     this.rotation.set(0, THREE.MathUtils.degToRad(rotation), 0);
 
     this.roadRotation = rotation;
@@ -49,6 +49,7 @@ export class VehicleGraphTile extends THREE.Group {
       case 'straight': 
         return new StraightRoadTile(x, y, rotation);
       case 'corner':
+    
         return new CornerRoadTile(x, y, rotation);
       case 'three-way':
         return new ThreeWayRoadTile(x, y, rotation);
@@ -198,22 +199,22 @@ export class CornerRoadTile extends VehicleGraphTile {
     this.name = `CornerRoadTile (${this.position})`
 
     this.bottom = {
-      in: new VehicleGraphNode(roadOffset, tileOffset + 0.1),
-      out: new VehicleGraphNode(-roadOffset, tileOffset + 0.1)
+      in: new VehicleGraphNode(roadOffset, tileOffset),
+      out: new VehicleGraphNode(-roadOffset, tileOffset)
     };
 
     this.right = {
-      in: new VehicleGraphNode(tileOffset + 0.1, -roadOffset),
-      out: new VehicleGraphNode(tileOffset + 0.1, roadOffset)
+      in: new VehicleGraphNode(tileOffset, -roadOffset),
+      out: new VehicleGraphNode(tileOffset, roadOffset)
     };
 
     const midpointBottomRight = new VehicleGraphNode(
-      tileOffset - 1.5 * roadOffset, 
-      tileOffset - 1.5 * roadOffset);
+      tileOffset - 2 * roadOffset, 
+      tileOffset - 2 * roadOffset);
 
     const midpointTopLeft = new VehicleGraphNode(
-      tileOffset - 3 * roadOffset,
-      tileOffset - 3 * roadOffset);
+      tileOffset - 3.5 * roadOffset,
+      tileOffset - 3.5 * roadOffset);
 
     this.add(midpointBottomRight);
     this.add(midpointTopLeft);
@@ -240,10 +241,6 @@ export class ThreeWayRoadTile extends VehicleGraphTile {
     this.name = `TeeRoadTile (${this.position})`
 
     // Create nodes
-    this.left = {
-      in: new VehicleGraphNode(-tileOffset, roadOffset),
-      out: new VehicleGraphNode(-tileOffset, -roadOffset)
-    };
 
     this.right = {
       in: new VehicleGraphNode(tileOffset, -roadOffset),
@@ -255,38 +252,46 @@ export class ThreeWayRoadTile extends VehicleGraphTile {
       out: new VehicleGraphNode(-roadOffset, tileOffset)
     };
 
+    this.top = {
+      in: new VehicleGraphNode(-roadOffset, -tileOffset),
+      out: new VehicleGraphNode(roadOffset, -tileOffset)
+    };
+
     const midpointBottomLeft =  new VehicleGraphNode(-roadOffset, roadOffset);
     const midpointBottomRight = new VehicleGraphNode(roadOffset, roadOffset);
     const midpointTopLeft =  new VehicleGraphNode(-roadOffset, -roadOffset);
     const midpointTopRight =  new VehicleGraphNode(roadOffset, -roadOffset);
 
     // Add to tile
-    this.add(this.left.in);
-    this.add(this.left.out);
+
     this.add(this.right.in);
     this.add(this.right.out);
     this.add(this.bottom.in);
     this.add(this.bottom.out);
+    this.add(this.top.in);
+    this.add(this.top.out);
     this.add(midpointBottomLeft);
     this.add(midpointBottomRight);
     this.add(midpointTopLeft);
     this.add(midpointTopRight);
 
-    // Connect midpoints
+    // // Connect midpoints
     midpointBottomLeft.connect(midpointBottomRight);
     midpointBottomRight.connect(midpointTopRight);
     midpointTopRight.connect(midpointTopLeft);
     midpointTopLeft.connect(midpointBottomLeft);
 
-    // Connect inputs to midpoints
-    this.left.in.connect(midpointBottomLeft);
+    // // Connect inputs to midpoints
+
     this.right.in.connect(midpointTopRight);
     this.bottom.in.connect(midpointBottomRight);
+    this.top.in.connect(midpointTopLeft);
 
-    // Connect midpoints to outputs
+    // // Connect midpoints to outputs
     midpointBottomLeft.connect(this.bottom.out);
     midpointBottomRight.connect(this.right.out);
-    midpointTopLeft.connect(this.left.out);
+    midpointTopRight.connect(this.top.out);
+ 
   }
 }
 
