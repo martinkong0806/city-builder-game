@@ -1,8 +1,9 @@
-# simcity-threejs-clone
+# City Builder
 
 ## What is this?
 
-This is an ongoing project where I attempt to create a clone of SimCity using [Three.js](https://threejs.org/).
+A city simulation game that can be played on web. This project is an extended project from [Coffee Code Create](https://www.youtube.com/@coffeecodecreate)
+https://www.youtube.com/playlist?list=PLtzt35QOXmkJ9unmoeA5gXHcscQHJVQpW
 
 ## How do I run this locally?
 
