@@ -8,16 +8,16 @@ export default {
     speed: 0.0005,            // The distance travelled per millisecond
     fadeTime: 1000,           // The start/end time where the vehicle should fade
     maxLifetime: 10000,       // Maximum lifetime of a vehicle
-    maxVehicleCount:2,      // Maximum number of vehicles in scene at any one time
+    maxVehicleCount:20,      // Maximum number of vehicles in scene at any one time
     spawnInterval: 1000      // How often vehicles are spawned in milliseconds
   },
   zone: {
     abandonmentThreshold: 10, // Number of days before abandonment
-    abandonmentChance: 0.25,  // Probability of building abandonment
-    developmentChance: 0.25,  // Probability of building development
+    abandonmentChance: 0.01,  // Probability of building abandonment
+    developmentChance: 0.01,  // Probability of building development
     maxRoadSearchDistance: 3, // Max distance between buildng and road
-    maxResidents: 2,          // Max # of residents in a house
-    maxWorkers: 2,            // Max # of workers at a building
-    residentMoveInChance: 0.5 // Chance for a resident to move in
+    maxResidents: 4,          // Max # of residents in a house
+    maxWorkers: 20,            // Max # of workers at a building
+    residentMoveInChance: 0.2 // Chance for a resident to move in
   }
 }

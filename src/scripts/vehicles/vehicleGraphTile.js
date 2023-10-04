@@ -12,6 +12,7 @@ export class VehicleGraphTile extends THREE.Group {
     this.rotation.set(0, THREE.MathUtils.degToRad(rotation), 0);
 
     this.roadRotation = rotation;
+    
 
     /**
      * @type {{ in: VehicleGraphNode, out: VehicleGraphNode }}
@@ -32,6 +33,8 @@ export class VehicleGraphTile extends THREE.Group {
      * @type {{ in: VehicleGraphNode, out: VehicleGraphNode }}
      */
     this.bottom = { in: null, out: null };
+
+   
   }
 
   /**
@@ -76,11 +79,13 @@ export class VehicleGraphTile extends THREE.Group {
    */
   getRandomNode() {
     const nodes = [];
-
+    
     if (this.left.in) nodes.push(this.left.in);
     if (this.right.in) nodes.push(this.right.in);
     if (this.top.in) nodes.push(this.top.in);
     if (this.bottom.in) nodes.push(this.bottom.in);
+
+
 
     if (nodes.length > 0) {
       const i = Math.floor(nodes.length * Math.random());
@@ -88,6 +93,27 @@ export class VehicleGraphTile extends THREE.Group {
     } else {
       return null;
     }
+  }
+
+  getEntryNode(){
+    const nodes = [];
+    
+    if (this.left.in) nodes.push(this.left.in);
+    if (this.right.in) nodes.push(this.right.in);
+    if (this.top.in) nodes.push(this.top.in);
+    if (this.bottom.in) nodes.push(this.bottom.in);
+
+    let filteredNodes =  nodes.filter((node)=>{
+      return node.next[0].next.length >= 1
+    })
+
+    if (filteredNodes.length > 0) {
+      const i = Math.floor(nodes.length * Math.random());
+      return filteredNodes[i];
+    } else {
+      return null;
+    }
+
   }
 
   getWorldLeftSide() {

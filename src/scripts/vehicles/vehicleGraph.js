@@ -123,7 +123,7 @@ export class VehicleGraph extends THREE.Group {
 
 
       if (startingTile != null) {
-        let origin = startingTile.getRandomNode();
+        let origin = startingTile.getEntryNode();
         for(let node in startingTile.children){
           if(node.next == 0){
             origin = node;

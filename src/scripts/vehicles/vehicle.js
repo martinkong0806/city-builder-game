@@ -71,7 +71,7 @@ export class Vehicle extends THREE.Group {
       this.position.lerp(this.destinationWorldPosition, cycleTime);
     }
 
-    this.updateOpacity();
+    // this.updateOpacity();
   }
 
   updateOpacity() {

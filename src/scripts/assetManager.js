@@ -126,6 +126,7 @@ export class AssetManager {
    * @returns {THREE.Mesh}
    */
   cloneMesh(name, transparent = false) {
+    console.log(this.meshes)
     const mesh = this.meshes[name].clone();
 
     // Clone materials so each object has a unique material
@@ -174,6 +175,7 @@ export class AssetManager {
               map: this.textures.citybits,
             })
           });
+          console.log(mesh)
 
         } else {
           mesh.traverse((node) => {
