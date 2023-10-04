@@ -1,8 +1,17 @@
-# simcity-threejs-clone
+# City Builder
 
 ## What is this?
 
-This is an ongoing project where I attempt to create a clone of SimCity using [Three.js](https://threejs.org/).
+A city simulation game that can be played on web. This project is an extended project from [Coffee Code Create](https://www.youtube.com/@coffeecodecreate)
+https://www.youtube.com/playlist?list=PLtzt35QOXmkJ9unmoeA5gXHcscQHJVQpW
+
+There are several changes compared from the original projects
+- Road models are changed so the road now covers the whole tile.
+- Cars models are changed to fit the theme of roads
+- Cars can now only spawn from the end of the roads
+- Cars will not disappear mid way and will travel to any end of road instead.
+- Map tiles changes from 16x16 to 17x17
+- A straight road in the middle is created as the starting map.
 
 ## How do I run this locally?
 
