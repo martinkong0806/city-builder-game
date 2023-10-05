@@ -3,11 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": "18.0.0",
+    "npm": "6.14.13"
+},
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 3000",
     "build": "vite build",
     "preview": "vite preview",
-    "serve-heroku": "vite --host 0.0.0.0 --port $PORT preview"
+    "serve-heroku": "vite --host 0.0.0.0 --port 8000 preview"
   },
   "devDependencies": {
     
